@@ -455,12 +455,28 @@ export default function ServicesPage() {
                         id="phone"
                         name="phone"
                         type="tel"
-                        inputMode="numeric"
-                        pattern="[0-9]*"
                         value={formData.phone}
-                        onChange={handleInputChange}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(/[^0-9\s\-\(\)\+]/g, '');
+                          e.target.value = value;
+                          handleInputChange(e);
+                        }}
+                        onBlur={(e) => {
+                          // Format to US phone number on blur
+                          const digits = e.target.value.replace(/\D/g, '');
+                          if (digits.length === 10) {
+                            const formatted = `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+                            e.target.value = formatted;
+                          } else if (digits.length === 11 && digits.startsWith('1')) {
+                            const formatted = `+1 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+                            e.target.value = formatted;
+                          }
+                          handleInputChange(e);
+                        }}
                         required
-                        placeholder="Your phone number"
+                        placeholder="(555) 123-4567"
+                        pattern="^(\+1\s?)?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{4}$"
+                        title="Please enter a valid US phone number"
                       />
                     </div>
 
