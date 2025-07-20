@@ -85,7 +85,7 @@ export default function SupportPage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/images/gapp4.jpg"
+                    src="/images/24:7nurse.avif"
                     alt=" professional care team"
                     width={600}
                     height={450}
