@@ -177,7 +177,7 @@ export default function GAPPPage() {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-1 flex-shrink-0" />
-                      Covers services not typically covered by regular Medicaid
+                      Cover services for medically fragile kids from age 0 - 21
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-1 flex-shrink-0" />

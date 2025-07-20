@@ -29,9 +29,9 @@ export default function AboutPage() {
   ]
 
   const achievements = [
-    "GAPP-Approved Provider since 2020",
+    "GAPP-Approved Provider",
     "Veteran-Owned and Operated",
-    "30+ Satisfied Clients",
+    "50+ Satisfied Clients",
     "Licensed and Insured",
     "Background-Checked Caregivers",
     "24/7 Support Available",
@@ -94,7 +94,7 @@ export default function AboutPage() {
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-slate-800">30+</div>
+                  <div className="text-2xl font-bold text-slate-800">50+</div>
                   <div className="text-sm text-slate-600">Happy Families</div>
                 </div>
               </div>

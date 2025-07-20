@@ -32,7 +32,7 @@ export default function HomePage() {
   const stats: StatCardProps[] = [
     { label: "Veteran-Owned", value: "100%", icon: "shield" },
     { label: "GAPP Provider", value: "Certified", icon: "award" },
-    { label: "Clients Served", value: "30+", icon: "users" },
+    { label: "Clients Served", value: "50+", icon: "users" },
     { label: "Serving Georgia", value: "Statewide", icon: "heart" },
   ]
 
