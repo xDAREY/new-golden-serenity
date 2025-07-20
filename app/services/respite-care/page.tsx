@@ -187,7 +187,7 @@ export default function RespiteCarePage() {
               <div className="relative slide-in-right">
                 <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-xl">
                   <Image
-                    src="/images/elderly2.jpg"
+                    src="/images/elderly10.png"
                     alt="Professional caregivers providing respite care"
                     width={500}
                     height={375}

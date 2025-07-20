@@ -85,7 +85,7 @@ export default function SupportPage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/images/elderly5.jpg"
+                    src="/images/gapp4.jpg"
                     alt=" professional care team"
                     width={600}
                     height={450}
@@ -188,7 +188,7 @@ export default function SupportPage() {
               <div className="relative slide-in-right">
                 <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-xl">
                   <Image
-                    src="/images/elderly7.jpg"
+                    src="/images/elderly11.jpeg"
                     alt="24/7 care and medication management"
                     width={500}
                     height={375}

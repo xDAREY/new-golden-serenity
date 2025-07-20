@@ -113,7 +113,7 @@ export default function GAPPPage() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/gapp.jpg"
+                  src="/images/gapp2.webp"
                   alt="Healthcare worker providing care to child in wheelchair"
                   width={600}
                   height={450}
@@ -188,7 +188,7 @@ export default function GAPPPage() {
               <div className="relative">
                 <div className="aspect-square rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src="/images/elderly6.jpg"
+                    src="/images/gapp4.jpg"
                     alt="Caregiver assisting with physical therapy"
                     width={500}
                     height={500}

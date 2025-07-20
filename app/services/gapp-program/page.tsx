@@ -85,7 +85,7 @@ export default function GAPPProgramPage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/images/gapp.jpg"
+                    src="/images/gapp3.webp"
                     alt="Caregiver providing care to child in GAPP program"
                     width={600}
                     height={450}

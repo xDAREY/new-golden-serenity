@@ -79,7 +79,7 @@ export default function HomePage() {
             <div className="relative animate-slide-in-right">
               <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
                 <Image
-                  src="/images/elderly3.jpg"
+                  src="/images/gapp.jpg"
                   alt="Compassionate caregivers providing home care services"
                   width={600}
                   height={600}

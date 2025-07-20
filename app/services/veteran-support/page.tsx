@@ -187,7 +187,7 @@ export default function VeteranSupportPage() {
               <div className="relative slide-in-right">
                 <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-xl">
                   <Image
-                    src="/images/elderly5.jpg"
+                    src="/images/elderly9.webp"
                     alt="Veterans receiving care"
                     width={500}
                     height={375}

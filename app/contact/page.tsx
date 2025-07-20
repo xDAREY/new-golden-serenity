@@ -444,7 +444,7 @@ export default function ContactPage() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="/images/elderly1.jpg"
+                  src="/images/elderly12.jpg"
                   alt="Caregiver and elderly client sharing a warm moment"
                   width={600}
                   height={450}
