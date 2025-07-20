@@ -12,10 +12,10 @@ export default function VeteranSupportPage() {
       title: "Personal Care",
       description: "Assistance with activities of daily living tailored to the unique needs of veterans.",
     },
-    {
-      title: "VA Benefits Navigation",
-      description: "Help understanding and accessing available VA benefits and services.",
-    },
+    // {
+    //   title: "VA Benefits Navigation",
+    //   description: "Help understanding and accessing available VA benefits and services.",
+    // },
     {
       title: "Companionship",
       description: "Social interaction and emotional support from caregivers who understand military culture.",
@@ -36,7 +36,7 @@ export default function VeteranSupportPage() {
 
   const benefits = [
     "Care from providers who understand military culture",
-    "Assistance navigating VA benefits and services",
+    // "Assistance navigating VA benefits and services",
     "Support for veterans with service-related conditions",
     "Coordination with VA healthcare providers",
     "Respect for military service and sacrifice",
@@ -200,7 +200,7 @@ export default function VeteranSupportPage() {
         </section>
 
         {/* VA Benefits Navigation */}
-        <section className="py-16 bg-stone-50">
+        {/* <section className="py-16 bg-stone-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
@@ -247,7 +247,7 @@ export default function VeteranSupportPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA */}
         <section className="py-16 bg-primary text-white text-center rounded-3xl mt-16">

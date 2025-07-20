@@ -106,7 +106,7 @@ export default function ServicesPage() {
       description: "Dedicated care services for our nation's veterans with understanding of military culture",
       icon: Shield,
       href: "/services/veteran-support",
-      features: ["VA benefits assistance", "Military understanding", "Honor and respect", "Specialized care"],
+      features: ["Military understanding", "Honor and respect", "Specialized care"],
     },
     {
       title: "Companionship",
