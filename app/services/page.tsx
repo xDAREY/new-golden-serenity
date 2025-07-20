@@ -127,7 +127,7 @@ export default function ServicesPage() {
       description: "Round-the-clock care and support services for clients with complex needs",
       icon: Phone,
       href: "/services/24-7-support",
-      features: ["Continuous care", "Emergency response", "Night care", "Medical monitoring"],
+      features: ["Continuous care", "Night care", "Medical monitoring"],
     },
   ]
 

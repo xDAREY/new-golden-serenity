@@ -20,10 +20,10 @@ export default function SupportPage() {
       title: "Shift-Based Care",
       description: "Multiple caregivers working in shifts to ensure continuous coverage throughout the day and night.",
     },
-    {
-      title: "Emergency Response",
-      description: "Immediate assistance during emergencies with protocols for rapid intervention.",
-    },
+    // {
+    //   title: "Emergency Response",
+    //   description: "Immediate assistance during emergencies with protocols for rapid intervention.",
+    // },
     {
       title: "Medication Management",
       description: "Round-the-clock medication reminders and assistance with proper administration.",
@@ -37,7 +37,7 @@ export default function SupportPage() {
   const benefits = [
     "Continuous safety monitoring and fall prevention",
     "Peace of mind for family members at all hours",
-    "Immediate response to emergencies or changes in condition",
+    // "Immediate response to emergencies or changes in condition",
     "Consistent care without gaps in coverage",
     "Support for clients with complex or advanced care needs",
     "Reduced hospitalizations through preventive monitoring",
@@ -86,7 +86,7 @@ export default function SupportPage() {
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
                     src="/images/elderly5.jpg"
-                    alt="24/7 professional care team"
+                    alt=" professional care team"
                     width={600}
                     height={450}
                     className="object-cover w-full h-full"
@@ -206,7 +206,7 @@ export default function SupportPage() {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4 fade-in">
-                  Who Can Benefit from 24/7 Support Services?
+                  All Golden Serenity Homecare Client Benefit from 24/7 Support Services
                 </h2>
                 <p className="text-lg text-slate-600 slide-up">
                   Our round-the-clock care is particularly beneficial for:

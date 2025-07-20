@@ -128,7 +128,7 @@ export default function GAPPProgramPage() {
 
               <p>
                 Our specialized pediatric care team includes nurses and caregivers with specific training in pediatric
-                care, medical equipment management, and the unique needs of children with complex medical conditions. We
+                care, and the unique needs of children with complex medical conditions. We
                 work closely with each child's healthcare providers, therapists, and family members to ensure
                 coordinated, comprehensive care.
               </p>

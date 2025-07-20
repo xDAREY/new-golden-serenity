@@ -24,10 +24,10 @@ export default function RespiteCarePage() {
       title: "Vacation Coverage",
       description: "Extended care during family vacations or trips to maintain continuity of care.",
     },
-    {
-      title: "Emergency Relief",
-      description: "Rapid response care when family caregivers face unexpected situations or emergencies.",
-    },
+    // {
+    //   title: "Emergency Relief",
+    //   description: "Rapid response care when family caregivers face unexpected situations or emergencies.",
+    // },
     {
       title: "Regular Scheduled Breaks",
       description: "Consistent, planned respite to prevent caregiver burnout and support sustainable care.",

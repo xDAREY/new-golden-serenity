@@ -4,7 +4,8 @@ import { Montserrat } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { Toaster } from "sonner" 
+import { Toaster } from "sonner"
+import GoogleTranslate from "@/components/google-translate"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   title: "Golden Serenity Home Care - GAPP-Approved Home Care in Georgia",
   description:
     "Trusted GAPP-approved home care services in Georgia. Veteran-owned company providing compassionate personal care, pediatric support, and companionship services.",
-    metadataBase: new URL("https://www.goldenserenityhomecare.org"),
+  metadataBase: new URL("https://www.goldenserenityhomecare.org"),
   openGraph: {
     title: "Golden Serenity Home Care - GAPP-Approved",
     description:
@@ -55,7 +56,8 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
-        <Toaster position="top-center" richColors /> {}
+        <Toaster position="top-center" richColors />
+        <GoogleTranslate /> {/* ✅ Place it here at the bottom of the body */}
       </body>
     </html>
   )

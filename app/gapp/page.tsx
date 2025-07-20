@@ -37,10 +37,10 @@ export default function GAPPPage() {
       title: "Family Support",
       description: "Training and support for family members to help care for their child at home",
     },
-    {
-      title: "Medical Equipment",
-      description: "Access to necessary medical equipment and supplies for home care",
-    },
+    // {
+    //   title: "Medical Equipment",
+    //   description: "Access to necessary medical equipment and supplies for home care",
+    // },
   ]
 
   const processSteps = [
@@ -178,10 +178,10 @@ export default function GAPPPage() {
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-1 flex-shrink-0" />
                       Cover services for medically fragile kids from age 0 - 21
                     </li>
-                    <li className="flex items-start">
+                    {/* <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-1 flex-shrink-0" />
                       Supports family caregivers with training and respite
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>

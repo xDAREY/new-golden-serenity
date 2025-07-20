@@ -28,10 +28,10 @@ export default function CompanionshipPage() {
       title: "Meal Preparation",
       description: "Help with planning and preparing nutritious meals and snacks.",
     },
-    {
-      title: "Errands & Shopping",
-      description: "Assistance with grocery shopping, picking up prescriptions, and other errands.",
-    },
+    // {
+    //   title: "Errands & Shopping",
+    //   description: "Assistance with grocery shopping, picking up prescriptions, and other errands.",
+    // },
   ]
 
   const benefits = [
