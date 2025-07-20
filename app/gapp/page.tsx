@@ -8,11 +8,10 @@ import { CTASection } from "@/components/cta-section"
 
 export default function GAPPPage() {
   const eligibilityRequirements = [
-    "Child must be under 21 years of age",
+    "Child must be between 0 - 21 years of age",
     "Must be a Georgia resident",
-    "Family income must meet Medicaid guidelines",
     "Child must require a level of care typically provided in a hospital or nursing facility",
-    "Care must be safely provided in the home environment",
+    // "Care must be safely provided in the home environment",
     "Services must be medically necessary and prescribed by a physician",
   ]
 
