@@ -17,10 +17,10 @@ export default function GAPPProgramPage() {
       title: "Personal Care Services",
       description: "Assistance with activities of daily living, bathing, dressing, and mobility support.",
     },
-    {
-      title: "Respite Care",
-      description: "Temporary relief for family caregivers while ensuring continuous quality care for your child.",
-    },
+    // {
+    //   title: "Respite Care",
+    //   description: "Temporary relief for family caregivers while ensuring continuous quality care for your child.",
+    // },
     {
       title: "Care Coordination",
       description: "Working with your healthcare team to ensure comprehensive, coordinated care.",
@@ -29,18 +29,18 @@ export default function GAPPProgramPage() {
       title: "Family Support",
       description: "Training and support for family members to help care for their child at home.",
     },
-    {
-      title: "Medical Equipment",
-      description: "Access to necessary medical equipment and supplies for home care.",
-    },
+    // {
+    //   title: "Medical Equipment",
+    //   description: "Access to necessary medical equipment and supplies for home care.",
+    // },
   ]
 
   const eligibilityRequirements = [
-    "Child must be under 21 years of age",
+    "Child must be between 0 - 21 years of age",
     "Must be a Georgia resident",
-    "Family income must meet Medicaid guidelines",
+    // "Family income must meet Medicaid guidelines",
     "Child must require a level of care typically provided in a hospital or nursing facility",
-    "Care must be safely provided in the home environment",
+    // "Care must be safely provided in the home environment",
     "Services must be medically necessary and prescribed by a physician",
   ]
 

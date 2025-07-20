@@ -25,10 +25,10 @@ export default function GAPPPage() {
       title: "Personal Care Services",
       description: "Assistance with activities of daily living, bathing, dressing, and mobility support",
     },
-    {
-      title: "Respite Care",
-      description: "Temporary relief for family caregivers while ensuring continuous quality care for your child",
-    },
+    // {
+    //   title: "Respite Care",
+    //   description: "Temporary relief for family caregivers while ensuring continuous quality care for your child",
+    // },
     {
       title: "Care Coordination",
       description: "Working with your healthcare team to ensure comprehensive, coordinated care",
@@ -153,7 +153,7 @@ export default function GAPPPage() {
               <div className="space-y-6">
                 <p className="text-lg text-slate-600 leading-relaxed">
                   The Georgia Pediatric Program (GAPP) is a Medicaid waiver program designed to provide comprehensive
-                  home and community-based services for children with complex medical needs who would otherwise require
+                  home and community-based services for children 0 - 21 years of age with complex medical needs who would otherwise require
                   institutional care.
                 </p>
                 <p className="text-lg text-slate-600 leading-relaxed">
