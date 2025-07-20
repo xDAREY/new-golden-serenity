@@ -92,3 +92,33 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-logo-link,
+.goog-te-gadget span {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  color: transparent !important;
+  font-size: 0px !important;
+}
+
+#google_translate_element select {
+  padding: 0.4rem;
+  font-size: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background-color: white;
+  color: #111827;
+  font-weight: 500;
+  appearance: none;
+}
+
