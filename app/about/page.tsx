@@ -102,7 +102,7 @@ export default function AboutPage() {
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-slate-800">30+</div>
+                  <div className="text-2xl font-bold text-slate-800">50+</div>
                   <div className="text-sm text-slate-600">Happy Families</div>
                 </div>
               </div>

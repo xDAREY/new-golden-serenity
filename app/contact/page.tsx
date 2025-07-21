@@ -208,27 +208,27 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div>
-              <Card className="bg-white shadow-lg border-0">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-slate-800">Send Us a Message</CardTitle>
-                  <p className="text-slate-600">
+            <div className="w-full max-w-full">
+              <Card className="bg-white shadow-lg border-0 mx-auto">
+                <CardHeader className="px-4 sm:px-6">
+                  <CardTitle className="text-xl sm:text-2xl text-slate-800">Send Us a Message</CardTitle>
+                  <p className="text-sm sm:text-base text-slate-600">
                     Fill out the form below and we'll get back to you as soon as possible.
                   </p>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="px-4 sm:px-6">
                   {isSubmitted ? (
-                    <div className="text-center py-8">
-                      <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <CheckCircle className="h-8 w-8 text-green-600" />
+                    <div className="text-center py-6 sm:py-8">
+                      <div className="bg-green-100 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-green-600" />
                       </div>
-                      <h3 className="text-xl font-semibold text-slate-800 mb-2">Message Sent!</h3>
-                      <p className="text-slate-600">
+                      <h3 className="text-lg sm:text-xl font-semibold text-slate-800 mb-2">Message Sent!</h3>
+                      <p className="text-sm sm:text-base text-slate-600 px-4">
                         Thank you for contacting us. We'll respond to your message within 24 hours.
                       </p>
                       <Button
                         onClick={() => setIsSubmitted(false)}
-                        className="mt-4 bg-primary hover:bg-primary/90 text-white"
+                        className="mt-4 bg-primary hover:bg-primary/90 text-white text-sm sm:text-base px-4 py-2"
                       >
                         Send Another Message
                       </Button>
@@ -262,11 +262,11 @@ export default function ContactPage() {
                           setIsSubmitting(false)
                         }
                       }}
-                      className="space-y-6"
+                      className="space-y-4 sm:space-y-6 w-full"
                     >
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="w-full">
+                          <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
                             Full Name *
                           </label>
                           <Input
@@ -274,12 +274,12 @@ export default function ContactPage() {
                             name="name"
                             type="text"
                             required
-                            className="w-full"
+                            className="w-full text-sm sm:text-base h-10 sm:h-11"
                             placeholder="Your full name"
                           />
                         </div>
-                        <div>
-                          <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
+                        <div className="w-full">
+                          <label htmlFor="phone" className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
                             Phone Number
                           </label>
                           <Input
@@ -298,7 +298,7 @@ export default function ContactPage() {
                                 e.target.value = `+1 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
                               }
                             }}
-                            className="w-full"
+                            className="w-full text-sm sm:text-base h-10 sm:h-11"
                             placeholder="(555) 123-4567"
                             pattern="^(\+1\s?)?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{4}$"
                             title="Please enter a valid US phone number"
@@ -306,8 +306,8 @@ export default function ContactPage() {
                         </div>
                       </div>
 
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                      <div className="w-full">
+                        <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
                           Email Address *
                         </label>
                         <Input
@@ -315,21 +315,21 @@ export default function ContactPage() {
                           name="email"
                           type="email"
                           required
-                          className="w-full"
+                          className="w-full text-sm sm:text-base h-10 sm:h-11"
                           placeholder="your.email@example.com"
                         />
                       </div>
 
-                      <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                      <div className="w-full">
+                        <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
                           Message *
                         </label>
                         <Textarea
                           id="message"
                           name="message"
                           required
-                          rows={5}
-                          className="w-full"
+                          rows={4}
+                          className="w-full text-sm sm:text-base min-h-[100px] sm:min-h-[120px] resize-none"
                           placeholder="Tell us about your care needs or ask any questions you may have..."
                         />
                       </div>
@@ -337,10 +337,13 @@ export default function ContactPage() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-accent hover:bg-accent/90 text-white"
+                        className="w-full bg-accent hover:bg-accent/90 text-white text-sm sm:text-base h-10 sm:h-11 mt-4 sm:mt-6"
                       >
                         {isSubmitting ? (
-                          "Sending..."
+                          <span className="flex items-center justify-center">
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                            Sending...
+                          </span>
                         ) : (
                           <>
                             <Send className="mr-2 h-4 w-4" />

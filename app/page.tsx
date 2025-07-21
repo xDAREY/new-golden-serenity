@@ -10,9 +10,9 @@ import { CTASection } from "@/components/cta-section"
 export default function HomePage() {
   const testimonials = [
     {
-      name: "Tolulope Ajayi",
+      name: "Sade",
       content:
-        "Golden Serenity Home Care has been outstanding for my family. Their caregivers are compassionate, reliable, and truly attentive to our loved one’s needs. The staff is professional and responsive, making the entire experience smooth and reassuring. I highly recommend them to anyone seeking quality in-home care and peace of mind.",
+        "Golden Serenity Home Care provided exceptional pediatric care for my daughter, and I’m so thankful for their support. Rebekah was incredibly compassionate and  she made my daughter feel safe, seen, and truly cared for. And AJ, our coordinator, was always responsive, thoughtful, and made everything seamless. Their kindness and professionalism brought real peace of mind to our family. We wholeheartedly recommend Golden Serenity to any family seeking loving, reliable home care.",
       rating: 5,
     },
     {
@@ -150,54 +150,54 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Why Choose Us */}
+      
+        {/* Why Choose Us */}
       <section className="py-16 bg-stone-50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-slide-in-left">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-6">Trusted Care You Can Count On</h2>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-800 mb-6">Trusted Care You Can Count On</h2>
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-green-100 p-2 rounded-full flex-shrink-0">
-                    <Shield className="h-6 w-6 text-green-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-green-100 p-2 rounded-full flex-shrink-0 mt-1">
+                    <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 mb-2">GAPP Approved</h3>
-                    <p className="text-slate-600">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-slate-800 mb-2 text-sm sm:text-base">GAPP Approved</h3>
+                    <p className="text-slate-600 text-sm sm:text-base">
                       Certified provider for Georgia's Pediatric Program with specialized training and expertise.
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-2 rounded-full flex-shrink-0">
-                    <Award className="h-6 w-6 text-blue-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-blue-100 p-2 rounded-full flex-shrink-0 mt-1">
+                    <Award className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 mb-2">Medicaid Accepted</h3>
-                    <p className="text-slate-600">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-slate-800 mb-2 text-sm sm:text-base">Medicaid Accepted</h3>
+                    <p className="text-slate-600 text-sm sm:text-base">
                       We work with Medicaid and insurance providers to make care accessible and affordable.
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="bg-purple-100 p-2 rounded-full flex-shrink-0">
-                    <Users className="h-6 w-6 text-purple-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-purple-100 p-2 rounded-full flex-shrink-0 mt-1">
+                    <Users className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 mb-2">Veteran-Owned</h3>
-                    <p className="text-slate-600">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-slate-800 mb-2 text-sm sm:text-base">Veteran-Owned</h3>
+                    <p className="text-slate-600 text-sm sm:text-base">
                       Founded and operated by veterans who understand the importance of service and dedication.
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="bg-orange-100 p-2 rounded-full flex-shrink-0">
-                    <Heart className="h-6 w-6 text-orange-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-orange-100 p-2 rounded-full flex-shrink-0 mt-1">
+                    <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-orange-600" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 mb-2">Trusted Caregivers</h3>
-                    <p className="text-slate-600">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-slate-800 mb-2 text-sm sm:text-base">Trusted Caregivers</h3>
+                    <p className="text-slate-600 text-sm sm:text-base">
                       Thoroughly screened, trained, and compassionate caregivers committed to your wellbeing.
                     </p>
                   </div>
@@ -206,23 +206,24 @@ export default function HomePage() {
               <div className="mt-8">
                 <Button
                   asChild
-                  className="bg-primary hover:bg-primary/90 text-white hover:scale-105 transition-transform"
+                  className="bg-primary hover:bg-primary/90 text-white hover:scale-105 transition-transform w-full sm:w-auto text-sm sm:text-base"
                 >
                   <Link href="/services">
-                    Learn More About Our Care Standards
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <span className="block sm:inline">Learn More About Our Care Standards</span>
+                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 inline sm:inline" />
                   </Link>
                 </Button>
               </div>
             </div>
             <div className="relative animate-slide-in-right">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <div className="aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
                 <Image
                   src="/images/elderly4.jpg"
                   alt="Professional caregiver assisting elderly client"
                   width={600}
                   height={450}
                   className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                 />
               </div>
             </div>
