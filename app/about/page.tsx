@@ -43,7 +43,6 @@ export default function AboutPage() {
     "Former military service member",
     "Certified in healthcare management",
     "Passionate advocate for quality home care",
-    "Community leader and volunteer",
   ]
 
   return (
