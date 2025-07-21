@@ -10,21 +10,33 @@ import { CTASection } from "@/components/cta-section"
 export default function HomePage() {
   const testimonials = [
     {
-      name: "Sarah Johnson",
+      name: "Tolulope Ajayi",
       content:
-        "Golden Serenity has been a blessing for our family. Their caregivers are professional, compassionate, and truly care about my mother's wellbeing.",
+        "Golden Serenity Home Care has been outstanding for my family. Their caregivers are compassionate, reliable, and truly attentive to our loved one’s needs. The staff is professional and responsive, making the entire experience smooth and reassuring. I highly recommend them to anyone seeking quality in-home care and peace of mind.",
       rating: 5,
     },
     {
-      name: "Michael Davis",
+      name: "Jadiel Adorno",
       content:
-        "As a veteran, I appreciate their understanding of military service. The care team goes above and beyond every single day.",
+        "I am very pleased with Golden Serenity's customer services and all that they have to offer.  Thank you.",
+      rating: 5,
+    },
+       {
+      name: "Jesse & Nora Verdejo",
+      content:
+        "Great customer service and attentive to details!",
       rating: 5,
     },
     {
-      name: "Lisa Thompson",
+      name: "Da Re",
       content:
-        "The GAPP program support has been incredible for my son. They handle everything with such care and professionalism.",
+        "Golden serenity home care provided exceptional service, they also took it upon themselves to stay in touch, so grateful to them.",
+      rating: 5,
+    },
+    {
+      name: "Father Iris",
+      content:
+        "Golden Serenity Home Care has truly been a blessing to our family. Their caregivers are compassionate, professional, and genuinely committed to the well-being of their clients. From the moment we connected with their team, we felt a sense of trust and peace of mind knowing our loved one was in capable hands. Communication is seamless, and they go above and beyond to accommodate individual needs. I highly recommend Golden Serenity to anyone looking for reliable and personalized home care services. Thank you for your outstanding service and dedication!",
       rating: 5,
     },
   ]

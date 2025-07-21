@@ -5,7 +5,7 @@ import "./globals.css"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Toaster } from "sonner"
-import GoogleTranslate from "@/components/google-translate"
+import { LanguageTranslator } from "@/components/google-translate"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -57,7 +57,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <Toaster position="top-center" richColors />
-        <GoogleTranslate /> {/* ✅ Place it here at the bottom of the body */}
+        <LanguageTranslator /> 
       </body>
     </html>
   )
