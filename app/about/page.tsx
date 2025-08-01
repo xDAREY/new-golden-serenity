@@ -231,7 +231,7 @@ export default function AboutPage() {
                   <div className="lg:col-span-3 p-8 lg:p-12">
                     <div className="space-y-6">
                       <div>
-                        <h3 className="text-3xl font-bold text-slate-800 mb-2">Anu Ajayi</h3>
+                        <h3 className="text-3xl font-bold text-slate-800 mb-2">Anu Ajayi (AJ)</h3>
                         <p className="text-xl text-primary font-semibold mb-4">Chief Executive Officer</p>
                         <div className="flex items-center space-x-4 text-slate-600 mb-6">
                           <div className="flex items-center space-x-1">
