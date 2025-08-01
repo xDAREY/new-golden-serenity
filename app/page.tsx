@@ -36,7 +36,7 @@ export default function HomePage() {
     {
       name: "Father Iris",
       content:
-        "Golden Serenity Home Care has truly been a blessing to our family. Their caregivers are compassionate, professional, and genuinely committed to the well-being of their clients. From the moment we connected with their team, we felt a sense of trust and peace of mind knowing our loved one was in capable hands. Communication is seamless, and they go above and beyond to accommodate individual needs. I highly recommend Golden Serenity to anyone looking for reliable and personalized home care services. Thank you for your outstanding service and dedication!",
+        "Golden Serenity Home Care LLC has truly lived up to its name. From the very beginning, their team demonstrated genuine compassion, professionalism, and dedication. The caregivers are not only well-trained but also incredibly kind and attentive, treating their clients like family. They were responsive to our needs, created a care plan that was tailored specifically for our loved one, and maintained clear communication every step of the way. What stood out the most was their reliability and the peace of mind they gave us, knowing our loved one was in safe, capable, and caring hands. I highly recommend Golden Serenity Home Care LLC to anyone looking for quality, dependable, and heartfelt home care services.",
       rating: 5,
     },
   ]
