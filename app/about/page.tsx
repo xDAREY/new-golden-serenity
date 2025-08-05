@@ -40,7 +40,7 @@ export default function AboutPage() {
 
   const ceoHighlights = [
     "5+ years in healthcare administration",
-    "Former military service member",
+    "Retired military service member",
     "Certified in healthcare management",
     "Passionate advocate for quality home care",
   ]
