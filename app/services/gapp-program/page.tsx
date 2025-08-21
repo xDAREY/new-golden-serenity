@@ -149,7 +149,7 @@ export default function GAPPProgramPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4">
-              Common Qualifying Diagnoses
+              Common Qualifying Diagnoses or Medical Device Use
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               These are some of the common conditions that may qualify for GAPP services
@@ -181,12 +181,12 @@ export default function GAPPProgramPage() {
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-600">Down Syndrome</span>
                     </div>
-                  </div>
-                  <div className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-600">Autism with medical complexity</span>
                     </div>
+                  </div>
+                  <div className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-600">Traumatic Brain Injury</span>
@@ -203,6 +203,50 @@ export default function GAPPProgramPage() {
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-600">Heart Conditions</span>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">Gastrostomy Tube (G-Tube)</span>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <span className="text-slate-600">Dialysis Machine</span>
+                        <p className="text-sm text-slate-500 mt-1">
+                          (Peritoneal or Hemodialysis for Renal Failure)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <span className="text-slate-600">Wheelchair</span>
+                        <p className="text-sm text-slate-500 mt-1">
+                          (Power or Manual for Non-Ambulatory Children)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <span className="text-slate-600">Gait Trainer</span>
+                        <p className="text-sm text-slate-500 mt-1">
+                          (for Assisted Walking in Non-Mobile Children)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <span className="text-slate-600">Orthotic Braces</span>
+                        <p className="text-sm text-slate-500 mt-1">
+                          (AFOs, KAFOs, HKAFOs for Stability & Mobility)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">And more medical devices</span>
                     </div>
                   </div>
                 </div>
