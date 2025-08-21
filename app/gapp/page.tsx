@@ -240,6 +240,81 @@ export default function GAPPPage() {
         </div>
       </section>
 
+      {/* Common Diagnoses */}
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4">
+              Common Qualifying Diagnoses
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              These are some of the common conditions that may qualify for GAPP services
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Card className="bg-white shadow-lg border-0">
+              <CardContent className="p-8">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">Epilepsy</span>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">Cerebral Palsy</span>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">Spina Bifida</span>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">Muscular Dystrophy</span>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">Down Syndrome</span>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">Autism with medical complexity</span>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">Traumatic Brain Injury</span>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <span className="text-slate-600">Respiratory Disorders</span>
+                        <p className="text-sm text-slate-500 mt-1">
+                          (e.g., tracheostomy, ventilator dependence)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-600">Heart Conditions</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+                  <p className="text-sm text-slate-600">
+                    <strong>Important:</strong> Having one of these diagnoses does not automatically qualify a child for GAPP. 
+                    The child must also meet all other eligibility requirements and demonstrate the need for a level of care 
+                    typically provided in a hospital or nursing facility.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Services Included */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
