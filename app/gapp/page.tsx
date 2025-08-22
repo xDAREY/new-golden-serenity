@@ -334,15 +334,11 @@ export default function GAPPPage() {
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <div>
-                        <span className="text-slate-600">Orthotic Braces</span>
+                        <span className="text-slate-600">Orthotic Braces, etc</span>
                         <p className="text-sm text-slate-500 mt-1">
                           (AFOs, KAFOs, HKAFOs for Stability & Mobility)
                         </p>
                       </div>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-slate-600">And more medical devices</span>
                     </div>
                   </div>
                 </div>
