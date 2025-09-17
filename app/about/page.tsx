@@ -117,7 +117,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4 fade-in">
-                Founded by Veterans, Driven by Service
+                Founded by Veteran, Driven by Service
               </h2>
               <p className="text-lg text-slate-600 slide-up">
                 Our story begins with a commitment to continue serving our community after military service.
@@ -141,7 +141,7 @@ export default function AboutPage() {
                   <div className="lg:col-span-2 space-y-4">
                     <h3 className="text-2xl font-bold text-slate-800">A Legacy of Service</h3>
                     <p className="text-slate-600 leading-relaxed">
-                      After serving our country with honor, our founders recognized the need for quality, compassionate
+                      After serving our country with honor, our founder recognized the need for quality, compassionate
                       home care services in Georgia. Drawing from military values of integrity, dedication, and service
                       above self, Golden Serenity Home Care was established to fill this critical need in our community.
                     </p>
