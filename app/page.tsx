@@ -39,6 +39,17 @@ export default function HomePage() {
         "Golden Serenity Home Care LLC has truly lived up to its name. From the very beginning, their team demonstrated genuine compassion, professionalism, and dedication. The caregivers are not only well-trained but also incredibly kind and attentive, treating their clients like family. They were responsive to our needs, created a care plan that was tailored specifically for our loved one, and maintained clear communication every step of the way. What stood out the most was their reliability and the peace of mind they gave us, knowing our loved one was in safe, capable, and caring hands. I highly recommend Golden Serenity Home Care LLC to anyone looking for quality, dependable, and heartfelt home care services.",
       rating: 5,
     },
+    {
+      name: "Dawn English",
+      content:
+        "They have been so easy and wonderful to work with. My mom was visiting and we needed an aide to help her in the mornings. AJ maintained communication with me throughout and was able to accommodate us and Kim provided great care for my Mom. We will be calling them everytime she comes for her visits. Highly recommend Golden Serenity if your loved one needs some assistance.",
+      rating: 5,
+    },
+    {name: "Mo",
+      content:
+      ".",
+      rating: 5,
+    }
   ]
 
   const stats: StatCardProps[] = [
