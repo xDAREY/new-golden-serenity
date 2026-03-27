@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Globe, ChevronUp, X } from "lucide-react"
+import { Globe, ChevronDown, X } from "lucide-react"
 
 declare global {
   interface Window {
@@ -35,227 +35,155 @@ const languages = [
   { code: "fi", name: "Suomi", flag: "🇫🇮" },
 ]
 
+// Clear ALL googtrans cookies across all possible domain variations
+function clearGoogTransCookies() {
+  const hostname = window.location.hostname
+  const domains = [
+    hostname,
+    `.${hostname}`,
+    hostname.replace(/^www\./, ""),
+    `.${hostname.replace(/^www\./, "")}`,
+    "",
+  ]
+  const paths = ["/", ""]
+  domains.forEach((domain) => {
+    paths.forEach((path) => {
+      const domainPart = domain ? `; domain=${domain}` : ""
+      const pathPart = path ? `; path=${path}` : ""
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT${domainPart}${pathPart}`
+      document.cookie = `googtrans=/en/en; expires=Thu, 01 Jan 1970 00:00:00 GMT${domainPart}${pathPart}`
+    })
+  })
+}
+
+function setGoogTransCookie(langCode: string) {
+  const hostname = window.location.hostname
+  const expires = new Date(Date.now() + 24 * 60 * 60 * 1000).toUTCString()
+  const value = `/en/${langCode}`
+  // Set on both with and without www
+  document.cookie = `googtrans=${value}; path=/; domain=${hostname}; expires=${expires}`
+  document.cookie = `googtrans=${value}; path=/; domain=.${hostname}; expires=${expires}`
+  const bare = hostname.replace(/^www\./, "")
+  if (bare !== hostname) {
+    document.cookie = `googtrans=${value}; path=/; domain=${bare}; expires=${expires}`
+    document.cookie = `googtrans=${value}; path=/; domain=.${bare}; expires=${expires}`
+  }
+}
+
+function getCurrentLangFromCookie(): string {
+  const cookies = document.cookie.split(";")
+  const googtrans = cookies.find((c) => c.trim().startsWith("googtrans="))
+  if (googtrans) {
+    const value = decodeURIComponent(googtrans.split("=").slice(1).join("=")).trim()
+    const match = value.match(/\/en\/([a-z-]+)/)
+    if (match && match[1] && match[1] !== "en") return match[1]
+  }
+  return "en"
+}
+
 export function LanguageTranslator() {
   const [isOpen, setIsOpen] = useState(false)
   const [currentLanguage, setCurrentLanguage] = useState("en")
   const [isLoaded, setIsLoaded] = useState(false)
   const [isTranslating, setIsTranslating] = useState(false)
 
-  // Check for existing translation on mount
   useEffect(() => {
-    const checkCurrentLanguage = () => {
-      // Check cookie for current language
-      const cookies = document.cookie.split(";")
-      const googtransCookie = cookies.find((cookie) => cookie.trim().startsWith("googtrans="))
-
-      if (googtransCookie) {
-        const value = googtransCookie.split("=")[1]
-        const match = value.match(/\/en\/([a-z-]+)/)
-        if (match && match[1] !== "en") {
-          setCurrentLanguage(match[1])
-        }
-      }
-      
-      // Also check URL hash
-      const hash = window.location.hash
-      if (hash.includes('googtrans')) {
-        const match = hash.match(/googtrans\(en\|([^)]+)\)/)
-        if (match && match[1]) {
-          setCurrentLanguage(match[1])
-        }
-      }
-    }
-
-    checkCurrentLanguage()
-
-    // Listen for page changes to update current language
-    const handleRouteChange = () => {
-      setTimeout(checkCurrentLanguage, 500)
-    }
-
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleRouteChange)
-    
-    return () => {
-      window.removeEventListener('hashchange', handleRouteChange)
-    }
+    setCurrentLanguage(getCurrentLangFromCookie())
   }, [])
 
   useEffect(() => {
-    // Prevent multiple script loads
     if (document.querySelector('script[src*="translate.google.com"]')) {
       setIsLoaded(true)
       return
     }
 
-    const script = document.createElement("script")
-    script.type = "text/javascript"
-    script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-
     window.googleTranslateElementInit = () => {
-      if (!window.google?.translate?.TranslateElement) {
-        console.error("Google Translate not available")
-        return
-      }
-
+      if (!window.google?.translate?.TranslateElement) return
       try {
         new window.google.translate.TranslateElement(
           {
             pageLanguage: "en",
-            includedLanguages: languages.map((lang) => lang.code).join(","),
+            includedLanguages: languages.map((l) => l.code).join(","),
             layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false,
             multilanguagePage: true,
           },
-          "google_translate_element",
+          "google_translate_element"
         )
-
         setIsLoaded(true)
-
-        // Hide all Google UI elements immediately after initialization
-        setTimeout(() => {
-          hideGoogleElements()
-        }, 100)
-      } catch (error) {
-        console.error("Error initializing Google Translate:", error)
+        setTimeout(hideGoogleElements, 100)
+      } catch (e) {
+        console.error("Google Translate init error:", e)
       }
     }
 
+    const script = document.createElement("script")
+    script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     document.body.appendChild(script)
 
-    // Continuously hide Google elements but less aggressively
-    const hideInterval = setInterval(hideGoogleElements, 1000)
-
-    // Stop after 30 seconds to avoid performance issues
-    setTimeout(() => clearInterval(hideInterval), 30000)
-
-    return () => {
-      clearInterval(hideInterval)
-    }
+    const interval = setInterval(hideGoogleElements, 1000)
+    setTimeout(() => clearInterval(interval), 30000)
+    return () => clearInterval(interval)
   }, [])
 
-  const hideGoogleElements = () => {
+  function hideGoogleElements() {
     try {
-      // Hide the top banner frame
-      const bannerFrames = document.querySelectorAll(".goog-te-banner-frame, .goog-te-ftab")
-      bannerFrames.forEach((frame) => {
-        if (frame instanceof HTMLElement) {
-          frame.style.display = "none !important"
-          frame.style.visibility = "hidden !important"
-          if (frame.parentNode) {
-            frame.parentNode.removeChild(frame)
-          }
-        }
-      })
-
-      // Hide rating popup and other UI elements
-      const elementsToHide = [
-        '[id*="rating"]',
-        '[class*="rating"]', 
-        '.goog-te-spinner-pos',
-        '.goog-te-balloon-frame',
-        '#goog-gt-tt',
-        '.goog-te-gadget-icon'
+      const selectors = [
+        ".goog-te-banner-frame",
+        ".goog-te-ftab",
+        ".goog-te-spinner-pos",
+        ".goog-te-balloon-frame",
+        "#goog-gt-tt",
+        ".goog-te-gadget-icon",
+        'iframe[src*="translate.google"]',
       ]
-      
-      elementsToHide.forEach(selector => {
-        const elements = document.querySelectorAll(selector)
-        elements.forEach((el) => {
-          if (el instanceof HTMLElement) {
-            el.style.display = "none !important"
-            if (el.parentNode) {
-              el.parentNode.removeChild(el)
-            }
-          }
+      selectors.forEach((sel) => {
+        document.querySelectorAll(sel).forEach((el) => {
+          if (el instanceof HTMLElement) el.style.display = "none"
         })
       })
-
-      // Reset body top position
-      document.body.style.top = "0px !important"
-      document.documentElement.style.top = "0px !important"
-
-      // Hide iframe elements
-      const iframes = document.querySelectorAll('iframe[src*="translate.google"]')
-      iframes.forEach(iframe => {
-        if (iframe instanceof HTMLElement) {
-          iframe.style.display = "none !important"
-          if (iframe.parentNode) {
-            iframe.parentNode.removeChild(iframe)
-          }
-        }
-      })
-    } catch (error) {
-      console.log("Error hiding Google elements:", error)
-    }
+      document.body.style.top = "0px"
+      document.documentElement.style.top = "0px"
+    } catch (e) {}
   }
 
-  const translateTo = async (languageCode: string) => {
+  const translateTo = (langCode: string) => {
     if (isTranslating) return
     setIsTranslating(true)
     setIsOpen(false)
 
-    try {
-      if (languageCode === "en") {
-        // Clear all translation artifacts
-        document.cookie = `googtrans=; path=/; domain=${window.location.hostname}; expires=Thu, 01 Jan 1970 00:00:00 GMT`
-        document.cookie = `googtrans=/en/en; path=/; domain=${window.location.hostname}; expires=Thu, 01 Jan 1970 00:00:00 GMT`
-        
-        // Clear hash
-        if (window.location.hash.includes('googtrans')) {
-          window.location.hash = ""
-        }
-        
-        setCurrentLanguage("en")
-        
-        // Force reload to clear all translation state
-        setTimeout(() => {
-          window.location.reload()
-        }, 100)
-        return
-      }
+    // Always clear first
+    clearGoogTransCookies()
 
-      // Set translation cookie with longer expiration
-      const expirationDate = new Date()
-      expirationDate.setTime(expirationDate.getTime() + (24 * 60 * 60 * 1000)) // 24 hours
-      document.cookie = `googtrans=/en/${languageCode}; path=/; domain=${window.location.hostname}; expires=${expirationDate.toUTCString()}`
-      
-      setCurrentLanguage(languageCode)
-
-      // Try to trigger translation via select element
-      setTimeout(() => {
-        const selectElement = document.querySelector(".goog-te-combo") as HTMLSelectElement
-        if (selectElement) {
-          selectElement.value = languageCode
-          selectElement.dispatchEvent(new Event("change", { bubbles: true }))
-
-          // Hide elements after translation starts
-          setTimeout(hideGoogleElements, 1000)
-          setTimeout(hideGoogleElements, 3000)
-          setTimeout(hideGoogleElements, 5000) // Extra hiding attempts
-        } else {
-          // Fallback: reload with cookie
-          window.location.reload()
-        }
-      }, 100)
-    } catch (error) {
-      console.error("Translation error:", error)
-    } finally {
-      setTimeout(() => {
-        setIsTranslating(false)
-        hideGoogleElements()
-      }, 3000)
+    if (langCode === "en") {
+      // Reload without any cookie so page resets to English
+      setTimeout(() => window.location.reload(), 100)
+      return
     }
+
+    // Set fresh cookie then reload — most reliable approach
+    setGoogTransCookie(langCode)
+    setCurrentLanguage(langCode)
+
+    // Try select element first, fall back to reload
+    setTimeout(() => {
+      const select = document.querySelector(".goog-te-combo") as HTMLSelectElement | null
+      if (select) {
+        select.value = langCode
+        select.dispatchEvent(new Event("change", { bubbles: true }))
+        setTimeout(hideGoogleElements, 1000)
+        setTimeout(() => setIsTranslating(false), 3000)
+      } else {
+        window.location.reload()
+      }
+    }, 150)
   }
 
-  const getCurrentLanguageInfo = () => {
-    return languages.find((lang) => lang.code === currentLanguage) || languages[0]
-  }
-
-  const currentLang = getCurrentLanguageInfo()
+  const currentLang = languages.find((l) => l.code === currentLanguage) || languages[0]
 
   return (
     <>
-      {/* Google Translate Element - completely hidden */}
+      {/* Hidden Google Translate mount point */}
       <div
         id="google_translate_element"
         style={{
@@ -269,16 +197,16 @@ export function LanguageTranslator() {
           pointerEvents: "none",
           zIndex: -9999,
         }}
-      ></div>
+      />
 
-      {/* Floating Language Button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      {/* TOP RIGHT button + dropdown */}
+      <div className="fixed top-4 right-4 z-[9999]">
         {isOpen && (
-          <Card className="mb-4 bg-white shadow-2xl border-0 max-w-xs">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-slate-800 flex items-center">
-                  <Globe className="h-4 w-4 mr-2" />
+          <Card className="mb-2 bg-white shadow-2xl border-0 w-56">
+            <CardContent className="p-3">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="font-semibold text-slate-800 text-sm flex items-center gap-1.5">
+                  <Globe className="h-3.5 w-3.5" />
                   Select Language
                 </h3>
                 <Button
@@ -287,52 +215,40 @@ export function LanguageTranslator() {
                   onClick={() => setIsOpen(false)}
                   className="h-6 w-6 p-0 hover:bg-slate-100"
                 >
-                  <X className="h-4 w-4" />
+                  <X className="h-3.5 w-3.5" />
                 </Button>
               </div>
 
-              {!isLoaded && (
+              {!isLoaded ? (
                 <div className="text-center py-4">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary mx-auto mb-2"></div>
-                  <p className="text-xs text-slate-500">Loading translator...</p>
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary mx-auto mb-2" />
+                  <p className="text-xs text-slate-500">Loading...</p>
                 </div>
-              )}
-
-              {isLoaded && (
-                <div className="max-h-64 overflow-y-auto space-y-1">
+              ) : (
+                <div className="max-h-64 overflow-y-auto space-y-0.5">
                   {languages.map((language) => (
                     <button
                       key={language.code}
                       onClick={() => translateTo(language.code)}
                       disabled={isTranslating}
-                      className={`w-full flex items-center space-x-3 p-2 rounded-lg text-left hover:bg-slate-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
-                        currentLanguage === language.code ? "bg-primary/10 text-primary" : "text-slate-700"
+                      className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-md text-left text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+                        currentLanguage === language.code
+                          ? "bg-primary/10 text-primary font-medium"
+                          : "hover:bg-slate-100 text-slate-700"
                       }`}
                     >
-                      <span className="text-lg">{language.flag}</span>
-                      <span className="text-sm font-medium">{language.name}</span>
+                      <span>{language.flag}</span>
+                      <span>{language.name}</span>
                       {currentLanguage === language.code && (
-                        <div className="ml-auto w-2 h-2 bg-primary rounded-full"></div>
-                      )}
-                      {isTranslating && (
-                        <div className="ml-auto">
-                          <div className="animate-spin rounded-full h-3 w-3 border-b border-slate-400"></div>
-                        </div>
+                        <div className="ml-auto w-1.5 h-1.5 bg-primary rounded-full" />
                       )}
                     </button>
                   ))}
                 </div>
               )}
 
-              <div className="mt-4 pt-3 border-t border-slate-200">
-                <p className="text-xs text-slate-500 text-center">
-                  {currentLanguage !== "en" && (
-                    <span className="block text-orange-600 mb-1 font-medium">
-                      ⚠️ Navigation uses full page reload when translated
-                    </span>
-                  )}
-                  Powered by Google Translate
-                </p>
+              <div className="mt-3 pt-2 border-t border-slate-100">
+                <p className="text-[10px] text-slate-400 text-center">Powered by Google Translate</p>
               </div>
             </CardContent>
           </Card>
@@ -340,20 +256,16 @@ export function LanguageTranslator() {
 
         <Button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-primary hover:bg-primary/90 text-white shadow-2xl rounded-full w-14 h-14 p-0 transition-all duration-300 hover:scale-110"
+          className="bg-primary hover:bg-primary/90 text-white shadow-lg rounded-full h-10 px-3 gap-1.5 transition-all duration-200"
           aria-label="Language Translator"
         >
-          <div className="flex flex-col items-center">
-            <span className="text-lg mb-0.5">🌍</span>
-            <span className="text-xs font-medium">{currentLang.code.toUpperCase()}</span>
-          </div>
-          {isOpen && <ChevronUp className="absolute -top-1 -right-1 h-3 w-3" />}
+          <Globe className="h-4 w-4" />
+          <span className="text-xs font-medium">{currentLang.flag} {currentLang.code.toUpperCase()}</span>
+          <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </Button>
       </div>
 
-      {/* More aggressive CSS to hide ALL Google Translate UI */}
       <style jsx global>{`
-        /* Nuclear option: Hide everything Google Translate related */
         .goog-te-banner-frame,
         .goog-te-banner-frame.skiptranslate,
         .goog-te-ftab,
@@ -362,88 +274,34 @@ export function LanguageTranslator() {
         .goog-te-balloon-frame,
         #goog-gt-tt,
         .goog-te-gadget-icon,
-        [id*="goog-te"]:not(#google_translate_element),
-        [class*="goog-te"]:not(#google_translate_element):not(.goog-te-combo),
         iframe[src*="translate.google.com"],
         iframe[name*="google_translate"] {
           display: none !important;
           visibility: hidden !important;
-          opacity: 0 !important;
           position: absolute !important;
           left: -99999px !important;
           top: -99999px !important;
           width: 0 !important;
           height: 0 !important;
-          z-index: -99999 !important;
           pointer-events: none !important;
         }
-        
-        /* Keep body at normal position always */
-        body,
-        html {
+        body, html {
           top: 0px !important;
-          position: static !important;
           margin-top: 0 !important;
           padding-top: 0 !important;
         }
-        
-        /* Force body position even when Google tries to change it */
         body.translated-ltr,
-        body.translated-rtl,
-        body[style*="top"] {
+        body.translated-rtl {
           top: 0px !important;
           margin-top: 0 !important;
-          padding-top: 0 !important;
-          position: static !important;
         }
-        
-        /* Hide all rating and feedback elements */
-        [id*="rating"],
-        [class*="rating"],
-        [id*="feedback"],
-        [class*="feedback"],
-        [id*="goog-gt"],
-        [class*="goog-gt"] {
-          display: none !important;
-          visibility: hidden !important;
-        }
-        
-        /* Ensure the select element is accessible but invisible */
         .goog-te-combo {
           position: absolute !important;
           left: -99999px !important;
-          top: -99999px !important;
           opacity: 0 !important;
-          visibility: hidden !important;
           pointer-events: none !important;
         }
-        
-        /* Hide skiptranslate elements */
-        .skiptranslate,
-        [class*="skiptranslate"] {
-          display: none !important;
-        }
-        
-        /* Remove Google branding and logos */
-        .goog-logo-link,
-        .goog-te-gadget-simple .goog-te-menu-value span:first-child,
-        [style*="www.gstatic.com"] {
-          display: none !important;
-        }
-
-        /* Prevent any Google elements from affecting layout */
-        [class*="goog-te"] * {
-          margin: 0 !important;
-          padding: 0 !important;
-          border: none !important;
-        }
-        
-        /* Hide any dynamically created Google elements */
-        div[style*="translate.googleapis.com"],
-        div[style*="translate.google.com"],
-        [src*="translate.googleapis.com"] {
-          display: none !important;
-        }
+        .skiptranslate { display: none !important; }
       `}</style>
     </>
   )
