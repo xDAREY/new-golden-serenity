@@ -35,7 +35,6 @@ const languages = [
   { code: "fi", name: "Suomi", flag: "🇫🇮" },
 ]
 
-// Clear ALL googtrans cookies across all possible domain variations
 function clearGoogTransCookies() {
   const hostname = window.location.hostname
   const domains = [
@@ -60,7 +59,6 @@ function setGoogTransCookie(langCode: string) {
   const hostname = window.location.hostname
   const expires = new Date(Date.now() + 24 * 60 * 60 * 1000).toUTCString()
   const value = `/en/${langCode}`
-  // Set on both with and without www
   document.cookie = `googtrans=${value}; path=/; domain=${hostname}; expires=${expires}`
   document.cookie = `googtrans=${value}; path=/; domain=.${hostname}; expires=${expires}`
   const bare = hostname.replace(/^www\./, "")
@@ -81,7 +79,8 @@ function getCurrentLangFromCookie(): string {
   return "en"
 }
 
-export function LanguageTranslator() {
+// ─── Embeddable button (used inside Navbar) ───────────────────────────────────
+export function LanguageTranslatorButton() {
   const [isOpen, setIsOpen] = useState(false)
   const [currentLanguage, setCurrentLanguage] = useState("en")
   const [isLoaded, setIsLoaded] = useState(false)
@@ -151,21 +150,16 @@ export function LanguageTranslator() {
     if (isTranslating) return
     setIsTranslating(true)
     setIsOpen(false)
-
-    // Always clear first
     clearGoogTransCookies()
 
     if (langCode === "en") {
-      // Reload without any cookie so page resets to English
       setTimeout(() => window.location.reload(), 100)
       return
     }
 
-    // Set fresh cookie then reload — most reliable approach
     setGoogTransCookie(langCode)
     setCurrentLanguage(langCode)
 
-    // Try select element first, fall back to reload
     setTimeout(() => {
       const select = document.querySelector(".goog-te-combo") as HTMLSelectElement | null
       if (select) {
@@ -183,7 +177,7 @@ export function LanguageTranslator() {
 
   return (
     <>
-      {/* Hidden Google Translate mount point */}
+      {/* Hidden Google Translate mount point — rendered once anywhere in the tree */}
       <div
         id="google_translate_element"
         style={{
@@ -199,70 +193,70 @@ export function LanguageTranslator() {
         }}
       />
 
-      {/* TOP RIGHT button + dropdown */}
-      <div className="fixed top-4 right-4 z-[9999]">
-        {isOpen && (
-          <Card className="mb-2 bg-white shadow-2xl border-0 w-56">
-            <CardContent className="p-3">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-slate-800 text-sm flex items-center gap-1.5">
-                  <Globe className="h-3.5 w-3.5" />
-                  Select Language
-                </h3>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsOpen(false)}
-                  className="h-6 w-6 p-0 hover:bg-slate-100"
-                >
-                  <X className="h-3.5 w-3.5" />
-                </Button>
-              </div>
-
-              {!isLoaded ? (
-                <div className="text-center py-4">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary mx-auto mb-2" />
-                  <p className="text-xs text-slate-500">Loading...</p>
-                </div>
-              ) : (
-                <div className="max-h-64 overflow-y-auto space-y-0.5">
-                  {languages.map((language) => (
-                    <button
-                      key={language.code}
-                      onClick={() => translateTo(language.code)}
-                      disabled={isTranslating}
-                      className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-md text-left text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
-                        currentLanguage === language.code
-                          ? "bg-primary/10 text-primary font-medium"
-                          : "hover:bg-slate-100 text-slate-700"
-                      }`}
-                    >
-                      <span>{language.flag}</span>
-                      <span>{language.name}</span>
-                      {currentLanguage === language.code && (
-                        <div className="ml-auto w-1.5 h-1.5 bg-primary rounded-full" />
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              <div className="mt-3 pt-2 border-t border-slate-100">
-                <p className="text-[10px] text-slate-400 text-center">Powered by Google Translate</p>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        <Button
+      {/* Inline wrapper — positions the dropdown BELOW the button */}
+      <div className="relative">
+        <button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-primary hover:bg-primary/90 text-white shadow-lg rounded-full h-10 px-3 gap-1.5 transition-all duration-200"
+          className="flex items-center gap-1.5 text-white hover:text-accent transition-colors font-medium px-2 py-1 rounded-md hover:bg-white/10"
           aria-label="Language Translator"
         >
           <Globe className="h-4 w-4" />
           <span className="text-xs font-medium">{currentLang.flag} {currentLang.code.toUpperCase()}</span>
           <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
-        </Button>
+        </button>
+
+        {isOpen && (
+          <div className="absolute right-0 top-full mt-2 z-[9999]">
+            <Card className="bg-white shadow-2xl border-0 w-56">
+              <CardContent className="p-3">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-semibold text-slate-800 text-sm flex items-center gap-1.5">
+                    <Globe className="h-3.5 w-3.5" />
+                    Select Language
+                  </h3>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="h-6 w-6 flex items-center justify-center rounded hover:bg-slate-100"
+                  >
+                    <X className="h-3.5 w-3.5 text-slate-500" />
+                  </button>
+                </div>
+
+                {!isLoaded ? (
+                  <div className="text-center py-4">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary mx-auto mb-2" />
+                    <p className="text-xs text-slate-500">Loading...</p>
+                  </div>
+                ) : (
+                  <div className="max-h-64 overflow-y-auto space-y-0.5">
+                    {languages.map((language) => (
+                      <button
+                        key={language.code}
+                        onClick={() => translateTo(language.code)}
+                        disabled={isTranslating}
+                        className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-md text-left text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+                          currentLanguage === language.code
+                            ? "bg-primary/10 text-primary font-medium"
+                            : "hover:bg-slate-100 text-slate-700"
+                        }`}
+                      >
+                        <span>{language.flag}</span>
+                        <span>{language.name}</span>
+                        {currentLanguage === language.code && (
+                          <div className="ml-auto w-1.5 h-1.5 bg-primary rounded-full" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                <div className="mt-3 pt-2 border-t border-slate-100">
+                  <p className="text-[10px] text-slate-400 text-center">Powered by Google Translate</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
 
       <style jsx global>{`
@@ -285,24 +279,16 @@ export function LanguageTranslator() {
           height: 0 !important;
           pointer-events: none !important;
         }
-        body, html {
-          top: 0px !important;
-          margin-top: 0 !important;
-          padding-top: 0 !important;
-        }
-        body.translated-ltr,
-        body.translated-rtl {
-          top: 0px !important;
-          margin-top: 0 !important;
-        }
-        .goog-te-combo {
-          position: absolute !important;
-          left: -99999px !important;
-          opacity: 0 !important;
-          pointer-events: none !important;
-        }
+        body, html { top: 0px !important; margin-top: 0 !important; padding-top: 0 !important; }
+        body.translated-ltr, body.translated-rtl { top: 0px !important; margin-top: 0 !important; }
+        .goog-te-combo { position: absolute !important; left: -99999px !important; opacity: 0 !important; pointer-events: none !important; }
         .skiptranslate { display: none !important; }
       `}</style>
     </>
   )
+}
+
+// Keep the old export name so layout.tsx doesn't break (it renders nothing now — translator lives in Navbar)
+export function LanguageTranslator() {
+  return null
 }
